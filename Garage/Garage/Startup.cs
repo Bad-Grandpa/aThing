@@ -30,7 +30,12 @@ namespace Garage
 
             services.AddControllersWithViews();
 
-            services.AddRazorPages().AddRazorRuntimeCompilation();
+            services.AddRazorPages()
+                .AddRazorRuntimeCompilation()
+                .AddRazorPagesOptions(config =>
+                {
+                    config.Conventions.AuthorizeFolder("/CarList");   
+                });
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
