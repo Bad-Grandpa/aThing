@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Text.Json;
 using System.Threading.Tasks;
 using Garage.Model;
 using Microsoft.AspNetCore.Mvc;
@@ -24,7 +25,7 @@ namespace Garage.Pages.CarList
         public async Task OnGet()
         {
             Cars = await _db.Car.ToListAsync();
-            Log.Logger.Information("List of Cars in DB has been requested.");
+            Log.Logger.Information("Page: Index (Namespace: Garage.Pages.CarList) Function: async Task OnGet() Loading cars from db.");
         }
 
         public async Task<IActionResult> OnPostDelete(int id)
@@ -33,12 +34,12 @@ namespace Garage.Pages.CarList
             if (car == null)
             {
                 NotFound();
-                Log.Logger.Error("Cars not found.");
+                Log.Logger.Error("Car not found.");
             }
             _db.Car.Remove(car);
             await _db.SaveChangesAsync();
 
-            Log.Logger.Information("Car ID:{id} B_NAME:{brand} M_NAME:{model} P_NUMBER:{plate} has been removed.", car.Id, car.Brand_Name, car.Model_Name, car.Plate_Number);
+            Log.Logger.Information("Page: Index (Namespace: Garage.Pages.CarList) Function: async Task<IActionResult> OnPostDelete Car ID:{id} B_NAME:{brand} M_NAME:{model} P_NUMBER:{plate} has been removed.", car.Id, car.Brand_Name, car.Model_Name, car.Plate_Number);
 
             return RedirectToPage("Index");
         }

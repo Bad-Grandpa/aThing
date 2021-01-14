@@ -23,7 +23,7 @@ namespace Garage.Pages.CarList
         public async Task OnGet(int id)
         {
             Car = await _db.Car.FindAsync(id);
-            Log.Logger.Information("Page: EditModel Function: async Task OnGet Car ID:{id} B_NAME:{brand} M_NAME:{model} P_NUMBER:{plate} is being edited.", Car.Id, Car.Brand_Name, Car.Model_Name, Car.Plate_Number);
+            Log.Logger.Information("Page: Edit Function: async Task OnGet Car ID:{id} B_NAME:{brand} M_NAME:{model} P_NUMBER:{plate} is being edited.", Car.Id, Car.Brand_Name, Car.Model_Name, Car.Plate_Number);
         }
 
         public async Task<IActionResult> OnPost()
@@ -35,7 +35,7 @@ namespace Garage.Pages.CarList
                 CarFromDb.Model_Name = Car.Model_Name;
                 CarFromDb.Plate_Number = Car.Plate_Number;
 
-                Log.Logger.Information("Car ID:{id} B_NAME:{brand} M_NAME:{model} P_NUMBER:{plate} has changed values.", Car.Id, Car.Brand_Name, Car.Model_Name, Car.Plate_Number);
+                Log.Logger.Information("Page: Edit Function: async Task<IActionResult> OnPost Car ID:{id} B_NAME:{brand} M_NAME:{model} P_NUMBER:{plate} has changed values.", Car.Id, Car.Brand_Name, Car.Model_Name, Car.Plate_Number);
 
                 await _db.SaveChangesAsync();
 

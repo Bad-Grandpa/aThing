@@ -28,7 +28,7 @@ namespace Garage.Pages.CarList
                 await _db.Car.AddAsync(Car);
                 await _db.SaveChangesAsync();
 
-                Log.Logger.Information("Car ID:{id} B_NAME:{brand} M_NAME:{model} P_NUMBER:{plate} has been created.", Car.Id, Car.Brand_Name, Car.Model_Name, Car.Plate_Number);
+                Log.Logger.Information("Page: Create Function: async Task<IActionResult> OnPost() Car ID:{id} B_NAME:{brand} M_NAME:{model} P_NUMBER:{plate} has been created.", Car.Id, Car.Brand_Name, Car.Model_Name, Car.Plate_Number);
 
                 return RedirectToPage("Index");
             }

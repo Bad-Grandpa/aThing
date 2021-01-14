@@ -19,45 +19,49 @@
         <form method="post">
             @if (Model.Cars.Count() > 0)
             {
-                <table class="table table-striped border">
-                    <tr class="table-secondary">
-                        <th>
-                            <label asp-for="Cars.FirstOrDefault().Brand_Name">Brand</label>
-                        </th>
-                        <th>
-                            <label asp-for="Cars.FirstOrDefault().Model_Name">Model</label>
-                        </th>
-                        <th>
-                            <label asp-for="Cars.FirstOrDefault().Plate_Number">Plate Number</label>
-                        </th>
-                        <th>
+            <table class="table table-striped border">
+                <tr class="table-secondary">
+                    <th>
+                        <label asp-for="Cars.FirstOrDefault().Brand_Name">Brand</label>
+                    </th>
+                    <th>
+                        <label asp-for="Cars.FirstOrDefault().Model_Name">Model</label>
+                    </th>
+                    <th>
+                        <label asp-for="Cars.FirstOrDefault().Plate_Number">Plate Number</label>
+                    </th>
+                    <th>
 
-                        </th>
-                    </tr>
-                    @foreach (var item in Model.Cars)
+                    </th>
+                </tr>
+                @foreach (var item in Model.Cars)
                     {
-                        <tr>
-                            <td>
-                                @Html.DisplayFor(m => item.Brand_Name)
-                            </td>
-                            <td>
-                                @Html.DisplayFor(m => item.Model_Name)
-                            </td>
-                            <td>
-                                @Html.DisplayFor(m => item.Plate_Number)
-                            </td>
-                            <td>
-                                <button asp-page-handler="Delete" asp-route-id="@item.Id" onclick="return confirm('Are you sure you want to delete?')" class="btn btn-danger btn-sm">Delete</button>
-                                <a asp-page="Edit" asp-route-id="@item.Id" class="btn btn-success btn-sm text-white">Edit</a>
-                            </td>
-                        </tr>
+                <tr>
+                    <td>
+                        @Html.DisplayFor(m => item.Brand_Name)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(m => item.Model_Name)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(m => item.Plate_Number)
+                    </td>
+                    <td>
+                        <button asp-page-handler="Delete" asp-route-id="@item.Id" onclick="return confirm('Are you sure you want to delete?')" class="btn btn-danger btn-sm">Delete</button>
+                        <a asp-page="Edit" asp-route-id="@item.Id" class="btn btn-success btn-sm text-white">Edit</a>
+                        <a asp-page="Download" asp-route-id="@item.Id" class="btn btn-success btn-sm text-white">Download</a>
+                    </td>
+                </tr>
                     }
-                </table>
+            </table>
             }
             else
             {
-                <p>No cars available.</p>
+            <p>No cars available.</p>
             }
+        </form>
+        <form id="download-data" asp-page="DownloadTable" method="post" class="form-group">
+            <button class="btn btn-primary" type="submit">Download</button>
         </form>
 
     </div>
